@@ -55,11 +55,13 @@ input("Aperte Enter para continuar...")
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 
 def column_to_list(data, index):
-    """ retorna lista dos elementos a partir de uma colida do dataset
-    args:
-    param1: dataset
-    param2: index do dataset
-    return: lista com valores
+    """ 
+    Funçao adiciona itens da coluna numa lista.
+    Args: 
+        data: dados da lista
+        index: index da coluna
+    retorna: 
+        lista com os valores da coluna.
     """
 
     column_list = []
@@ -112,10 +114,12 @@ input("Aperte Enter para continuar...")
 
 
 def count_gender(data_list):
-    """ retorna o genero mais popular
-    args: 
-    data_list: generos
-    retorna: stringo com o genero mais popular
+    """ 
+    Função que conta cada genero
+    Argumentos: 
+        data_list: dados da lista
+    retorna:
+        quantidade de cada genero
     """
     male = 0
     female = 0
@@ -147,6 +151,14 @@ input("Aperte Enter para continuar...")
 
 
 def most_popular_gender(data_list):
+    """ 
+    Função retorna o genero mais popular
+    Argumentos:
+        data_list: dados da lista
+    Retorna:
+        String com o genero mais popular da lista
+    """ 
+
     answer = ""
     gender_qtt = count_gender(data_list)
     if gender_qtt[0] > gender_qtt[1]:
@@ -188,11 +200,12 @@ input("Aperte Enter para continuar...")
 print("\nTAREFA 7: Verifique o gráfico!")
 
 def count_user_type(data_list):
-    """ retorna os tipos de usuario
-    args:
-    data_list: tipos de usuario
-    returna:
-    lista com a quatidade dos tipos de usuario
+    """
+    Retorna os tipos de usuario
+    Argumentos:
+        data_list: dados da lista
+    retorna:
+        lista com a quatidade dos tipos de usuario
     """
     subscriber = 0
     customer = 0
@@ -240,13 +253,16 @@ max_trip = 0.
 mean_trip = 0.
 median_trip = 0.
 
-trip_duration_list = [int(x) for x in trip_duration_list]
-sorted_list = sorted(trip_duration_list)
-print(sorted_list[:20])
-min_trip = sorted_list[0]
-max_trip = sorted_list[len(sorted_list)-1]
-mean_trip = sum(sorted_list)/len(sorted_list)
-median_trip = sorted_list[int(len(sorted_list)/2)]
+trip_duration_list = sorted([int(i) for i in column_to_list(data_list, 2)])
+trip_list_len = len(trip_duration_list)
+
+min_trip = trip_duration_list[0]
+max_trip = trip_duration_list[-1]
+mean_trip = sum(trip_duration_list) / trip_list_len
+if trip_list_len  % 2 == 0:
+    median_trip = sum(trip_duration_list[trip_list_len//2-1:trip_list_len//2+1]) / 2
+else:
+    median_trip = trip_duration_list[trip_list_len//2]
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
 print("Min: ", min_trip, "Max: ", max_trip,
@@ -297,6 +313,14 @@ answer = "yes"
 
 
 def count_items(column_list):
+    """ 
+    Função que conta cada item diferente da lista
+    Argumentos:
+        column_list: dados da lista
+    Retorna:
+        Tupla(item_type, count_items)
+    """
+
     item_types = []
     count_items = []
     item_types = []
